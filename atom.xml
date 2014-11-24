@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Devex Tech Blog]]></title>
+  <link href="https://blog.devex.io/atom.xml" rel="self"/>
+  <link href="https://blog.devex.io/"/>
+  <updated>2014-11-24T09:50:14+01:00</updated>
+  <id>https://blog.devex.io/</id>
+  <author>
+    <name><![CDATA[Devex]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+</feed>
