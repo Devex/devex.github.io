@@ -18,8 +18,8 @@ one is featured.
 
 ## How a lot of people do it
 
-A pattern that seems to be quite common is to [extend the association by
-implementing a method that gets you the specific record][ar-ass-extension]:
+A pattern that seems to be quite common is to
+[extend the association by implementing a method that gets you the specific record][ar-ass-extension]:
 
 ```ruby
 class User < ActiveRecord::Base
