@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: 
 
-Sitemap: https://blog.devex.io/sitemap.xml 
+Sitemap: http://devex.github.io/sitemap.xml 
