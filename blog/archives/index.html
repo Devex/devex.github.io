@@ -9,8 +9,8 @@
   <meta name="author" content="Devex">
 
   
-  <meta name="description" content=" Blog Archive 2014 Friday Links - November 21st
-Nov 24 2014 posted in friday links Recent Posts Friday Links - November 21st ">
+  <meta name="description" content="Blog Archive 2014 Friday Links - November 21st
+Nov 24 2014 posted in friday links Recent Posts Friday Links - November 21st GitHub Repos Status &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -32,6 +32,18 @@ Nov 24 2014 posted in friday links Recent Posts Friday Links - November 21st ">
 <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 
   
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-1173244-22']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
 
 </head>
 
@@ -111,6 +123,35 @@ Nov 24 2014 posted in friday links Recent Posts Friday Links - November 21st ">
   </ul>
 </section>
 
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/Devex">@Devex</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'Devex',
+            count: 10,
+            skip_forks: false,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
 
 
 
@@ -128,6 +169,19 @@ Nov 24 2014 posted in friday links Recent Posts Friday Links - November 21st ">
 
 </footer>
   
+
+<script type="text/javascript">
+      var disqus_shortname = 'devexio';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
 
 
 
