@@ -1,2 +1,27 @@
 // This File is imported last, and will override other styles in the cascade
 // Add styles here to make changes without digging in too much
+
+html { background: $page-bg; }
+body > div > div { border-right-width: 0; }
+
+.centered {
+  width: 100%;
+  text-align: center;
+}
+
+body > nav {
+  padding: 10px 20px;
+}
+
+body > nav form .search {
+  font-size: 1.2em;
+  line-height: 1.3em;
+  width: 90%;
+  border-radius: 0;
+  background-color: #FFF;
+  border: 1px solid $nav-border;
+  &:focus {
+    border-color: $nav-color-hover;
+    @include box-shadow($nav-color-hover 0 0 4px, $nav-color-hover 0 0 3px inset);
+  }
+}
