@@ -4,6 +4,15 @@
 Devex.do(:good).well()
 ```
 
+## Posting Backlog
+
+Interesting topics which we can cover at some point when someone has the time
+and motivation:
+
+- Google Apps as our News CMT
+- Nested Layouts in front-end
+- Configuration defaults in front-end and grape-api
+
 ## How to write a Blog post
 
 - Fork this repository
