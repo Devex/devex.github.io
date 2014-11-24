@@ -1,24 +1,106 @@
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Devex Tech Blog]]></title>
-  <link href="http://devex.github.io/atom.xml" rel="self"/>
-  <link href="http://devex.github.io/"/>
-  <updated>2014-11-24T10:26:45-05:00</updated>
-  <id>http://devex.github.io/</id>
-  <author>
-    <name><![CDATA[Devex]]></name>
-    
-  </author>
-  <generator uri="http://octopress.org/">Octopress</generator>
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>One in a `has_many` - Access Special Association Objects in ActiveRecord - Devex Tech Blog</title>
+  <meta name="author" content="Devex">
 
   
-  <entry>
-    <title type="html"><![CDATA[One in a `has_many` - Access Special Association Objects in ActiveRecord]]></title>
-    <link href="http://devex.github.io/blog/2014/11/24/one-in-a-has-many-access-special-association-objects-in-activerecord/"/>
-    <updated>2014-11-24T09:12:48-05:00</updated>
-    <id>http://devex.github.io/blog/2014/11/24/one-in-a-has-many-access-special-association-objects-in-activerecord</id>
-    <content type="html"><![CDATA[<p>ActiveRecord models that define a <code>has_many</code> association often need access to a
+  <meta name="description" content="ActiveRecord models that define a has_many association often need access to a
+specific entry of this list. Think of an user that has many email &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://devex.github.io/blog/2014/11/24/one-in-a-has-many-access-special-association-objects-in-activerecord">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Devex Tech Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-1173244-22']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Devex Tech Blog</a></h1>
+  
+    <h2>Devex.do(:good).well()</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:devex.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">One in a `has_many` - Access Special Association Objects in ActiveRecord</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-11-24T09:12:48-05:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>24</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>9:12 am</span></time>
+        
+           | <a href="#disqus_thread"
+             data-disqus-identifier="http://devex.github.io">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>ActiveRecord models that define a <code>has_many</code> association often need access to a
 specific entry of this list. Think of an user that has many email addresses but
 only one that is his primary address. Or a Blog post with many comments of which
 one is featured.</p>
@@ -156,37 +238,158 @@ addresses:</p>
 
 <p>Yay! Now all the millions of users out there can sign up on our page without
 breaking the list of primary email addresses&hellip;</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Friday Links - November 21st]]></title>
-    <link href="http://devex.github.io/blog/2014/11/24/friday-links-november-21st/"/>
-    <updated>2014-11-24T04:45:03-05:00</updated>
-    <id>http://devex.github.io/blog/2014/11/24/friday-links-november-21st</id>
-    <content type="html"><![CDATA[<p>Every friday we pass each other some links that we read during the week and deem
-worth sharing. Each monday we&rsquo;ll publish that list here on the Blog.</p>
+</div>
 
-<ul>
-<li><a href="https://www.schneier.com/blog/archives/2014/11/a_new_free_ca.html">Schneier: New free CA</a></li>
-<li><a href="http://googlewebmastercentral.blogspot.de/2014/11/helping-users-find-mobile-friendly-pages.html">Google: Helping users find mobile-friendly pages</a></li>
-<li><a href="https://codeascraft.com/2014/11/17/personalized-recommendations-at-etsy/">Personalized Recommendations at Etsy</a></li>
-<li><a href="https://www.mattcutts.com/blog/dial-tone-moments/">Matt Cutts: Dial tone moments</a></li>
-<li><a href="https://aws.amazon.com/blogs/aws/track-aws-with-config/">Track AWS Resource Configurations With AWS Config</a></li>
-<li><a href="https://aws.amazon.com/blogs/aws/code-management-and-deployment/">New AWS Tools for Code Management and Deployment</a></li>
-<li><a href="http://weblog.rubyonrails.org/2014/11/19/Rails-4-0-11-1-and-4-1-7-1-have-been-released/">Rails 4.0.11.1 and 4.1.7.1 have been released</a></li>
-<li><a href="http://techblog.netflix.com/2014/11/nodejs-in-flames.html">Netflix: Node.js in Flames</a></li>
-<li><a href="http://nerds.airbnb.com/maintaining-quality-scale/">Airbnb: Maintaining Quality at Scale</a></li>
-<li><a href="http://nerds.airbnb.com/testing-at-airbnb/">Airbnb: Testing</a></li>
-<li><a href="http://nerds.airbnb.com/experiments-at-airbnb/">Airbnb: Experiments</a></li>
-<li><a href="http://nerds.airbnb.com/openair-algorithmic-pricing/">Airbnb: Algorithmic pricing</a></li>
-<li><a href="https://gigaom.com/2014/06/30/the-dark-side-of-io-how-the-u-k-is-making-web-domain-profits-from-a-shady-cold-war-land-deal/">The dark side of .io: How the U.K. is making web domain profits from a shady Cold War land deal</a></li>
-<li><a href="https://developer.github.com/guides/traversing-with-pagination/">Traversing with Pagination</a></li>
-<li><a href="http://www.theguardian.com/world/2014/nov/09/berlins-digital-exiles-tech-activists-escape-nsa">Berlin’s digital exiles: where tech activists go to escape the NSA</a></li>
-<li>7 Rules for Creating Gorgeous UI - <a href="https://medium.com/@erikdkennedy/7-rules-for-creating-gorgeous-ui-part-1-559d4e805cda">Part 1</a> and <a href="https://medium.com/@erikdkennedy/7-rules-for-creating-gorgeous-ui-part-2-430de537ba96">Part 2</a></li>
-</ul>
 
-]]></content>
-  </entry>
+  <footer>
+    <p class="meta">
+      
   
-</feed>
+
+<span class="byline author vcard">Posted by <span class="fn">dsager</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2014-11-24T09:12:48-05:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>24</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>9:12 am</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/code/'>code</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://devex.github.io/blog/2014/11/24/one-in-a-has-many-access-special-association-objects-in-activerecord/" data-via="d3v3x" data-counturl="http://devex.github.io/blog/2014/11/24/one-in-a-has-many-access-special-association-objects-in-activerecord/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/11/24/friday-links-november-21st/" title="Previous Post: Friday Links - November 21st">&laquo; Friday Links - November 21st</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/11/24/one-in-a-has-many-access-special-association-objects-in-activerecord/">One in a `has_many` - Access Special Association Objects in ActiveRecord</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/11/24/friday-links-november-21st/">Friday Links - November 21st</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/Devex">@Devex</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'Devex',
+            count: 10,
+            skip_forks: false,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Devex -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'devexio';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://devex.github.io/blog/2014/11/24/one-in-a-has-many-access-special-association-objects-in-activerecord/';
+        var disqus_url = 'http://devex.github.io/blog/2014/11/24/one-in-a-has-many-access-special-association-objects-in-activerecord/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

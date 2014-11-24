@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Code | Devex Tech Blog]]></title>
+  <link href="http://devex.github.io/blog/categories/code/atom.xml" rel="self"/>
+  <link href="http://devex.github.io/"/>
+  <updated>2014-11-24T10:26:45-05:00</updated>
+  <id>http://devex.github.io/</id>
+  <author>
+    <name><![CDATA[Devex]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[One in a `has_many` - Access Special Association Objects in ActiveRecord]]></title>
+    <link href="http://devex.github.io/blog/2014/11/24/one-in-a-has-many-access-special-association-objects-in-activerecord/"/>
+    <updated>2014-11-24T09:12:48-05:00</updated>
+    <id>http://devex.github.io/blog/2014/11/24/one-in-a-has-many-access-special-association-objects-in-activerecord</id>
+    <content type="html"><![CDATA[<p>ActiveRecord models that define a <code>has_many</code> association often need access to a
+specific entry of this list. Think of an user that has many email addresses but
+only one that is his primary address. Or a Blog post with many comments of which
+one is featured.</p>
+
+<!-- more -->
+
+
+<h2>How a lot of people do it</h2>
+
+<p>A pattern that seems to be quite common is to <a href="http://api.rubyonrails.org/classes/ActiveRecord/Associations/ClassMethods.html#module-ActiveRecord::Associations::ClassMethods-label-Association+extensions">extend the association by
+implementing a method that gets you the specific record</a>:</p>
+
+<pre><code class="ruby">class User &lt; ActiveRecord::Base
+  has_many :emails do
+    def primary
+      find(:first, conditions: 'is_primary')
+    end
+  end
+end
+</code></pre>
+
+<p>This allows you to access the user&rsquo;s primary email address via <code>#emails.primary</code>.
+So far so good, but what happens if we need to get a list of users with their
+primary email address? Of course we do eager loading to reduce the amount of
+database queries:</p>
+
+<pre><code class="ruby">User
+  .includes(:emails)
+  .find(:all)
+  .each { |u| p "#{u.name}: #{u.emails.primary.email}" }
+</code></pre>
+
+<p>But when we look at the SQL queries that are actually executed we realize that
+eager loading is happening but each primary email is queried separately
+afterwards:</p>
+
+<pre><code>DEBUG: User Load (0.3ms) SELECT "users".* FROM "users"
+DEBUG: Email Load (0.5ms) SELECT "emails".* FROM "emails"
+                          WHERE "emails"."user_id" IN (1, 2, 3, 4, 5)
+DEBUG: Email Load (0.6ms) SELECT "emails".* FROM "emails"
+                          WHERE "emails"."user_id" = 1 AND (is_primary)
+                          LIMIT 1
+DEBUG: Email Load (0.3ms) SELECT "emails".* FROM "emails"
+                          WHERE "emails"."user_id" = 2 AND (is_primary)
+                          LIMIT 1
+DEBUG: Email Load (0.3ms) SELECT "emails".* FROM "emails"
+                          WHERE "emails"."user_id" = 3 AND (is_primary)
+                          LIMIT 1
+DEBUG: Email Load (0.3ms) SELECT "emails".* FROM "emails"
+                          WHERE "emails"."user_id" = 4 AND (is_primary)
+                          LIMIT 1
+DEBUG: Email Load (0.3ms) SELECT "emails".* FROM "emails"
+                          WHERE "emails"."user_id" = 5 AND (is_primary)
+                          LIMIT 1
+</code></pre>
+
+<p>Ouch! This will screw up our app&rsquo;s performance as the user base grows!</p>
+
+<h2>A better way</h2>
+
+<p>But there&rsquo;s another way of picking out one special instance of a <code>has_many</code>
+association. A way that also allows eager loading. It&rsquo;s as simple as defining
+just another association pointing to the same object.</p>
+
+<pre><code class="ruby">class User &lt; ActiveRecord::Base
+  has_many :emails
+  has_one :primary_email, class_name: Email, conditions: 'is_primary'
+end
+</code></pre>
+
+<p>Now you can access the user&rsquo;s primary email address by <code>#primary_email</code>. Let&rsquo;s
+check the SQL log for a user list using eager loading:</p>
+
+<pre><code class="ruby">User
+  .includes(:primary_email)
+  .find(:all)
+  .each { |u| p "#{u.name}: #{u.primary_email.email}" }
+</code></pre>
+
+<p>As we can see eager loading is now working properly for the primary email
+addresses:</p>
+
+<pre><code>DEBUG: User Load (0.3ms) SELECT "users".* FROM "users"
+DEBUG: Email Load (0.5ms) SELECT "emails".* FROM "emails"
+                          WHERE "emails"."user_id" IN (1, 2, 3, 4, 5)
+                          AND (is_primary)
+</code></pre>
+
+<p>Yay! Now all the millions of users out there can sign up on our page without
+breaking the list of primary email addresses&hellip;</p>
+]]></content>
+  </entry>
+  
+</feed>
