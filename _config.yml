@@ -2,10 +2,10 @@
 #      Main Configs       #
 # ----------------------- #
 
-url: http://yoursite.com
-title: My Octopress Blog
-subtitle: A blogging framework for hackers.
-author: Your Name
+url: http://devex.github.io
+title: Devex Tech Blog
+subtitle: Devex.do(:good).well()
+author: Devex
 simple_search: https://www.google.com/search
 description:
 
