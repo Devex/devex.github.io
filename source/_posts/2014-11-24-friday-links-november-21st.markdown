@@ -11,6 +11,8 @@ categories:
 Every friday we pass each other some links that we read during the week and deem
 worth sharing. Each monday we'll publish that list here on the Blog.
 
+<!-- more -->
+
 - [Schneier: New free CA](https://www.schneier.com/blog/archives/2014/11/a_new_free_ca.html)
 - [Google: Helping users find mobile-friendly pages](http://googlewebmastercentral.blogspot.de/2014/11/helping-users-find-mobile-friendly-pages.html)
 - [Personalized Recommendations at Etsy](https://codeascraft.com/2014/11/17/personalized-recommendations-at-etsy/)
