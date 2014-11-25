@@ -29,7 +29,6 @@ specific entry of this list. Think of an user that has many email &hellip;">
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 
   
   <script type="text/javascript">
@@ -47,7 +46,7 @@ specific entry of this list. Think of an user that has many email &hellip;">
 
 </head>
 
-<body   >
+<body    class="collapse-sidebar sidebar-footer" >
   <header role="banner"><hgroup>
   <h1><a href="/">Devex Tech Blog</a></h1>
   
@@ -69,8 +68,9 @@ specific entry of this list. Think of an user that has many email &hellip;">
 </form>
   
 <ul class="main-navigation">
-  <li><a href="/">Blog</a></li>
-  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/">BLOG</a></li>
+  <li><a href="/blog/archives">ARCHIVES</a></li>
+  <li><a href="https://www.devex.com">DEVEX.COM</a></li>
 </ul>
 
 </nav>
@@ -146,27 +146,12 @@ one is featured.</p>
   <div class="entry-content"><p>Every friday we pass each other some links that we read during the week and deem
 worth sharing. Each monday we&rsquo;ll publish that list here on the Blog.</p>
 
-<ul>
-<li><a href="https://www.schneier.com/blog/archives/2014/11/a_new_free_ca.html">Schneier: New free CA</a></li>
-<li><a href="http://googlewebmastercentral.blogspot.de/2014/11/helping-users-find-mobile-friendly-pages.html">Google: Helping users find mobile-friendly pages</a></li>
-<li><a href="https://codeascraft.com/2014/11/17/personalized-recommendations-at-etsy/">Personalized Recommendations at Etsy</a></li>
-<li><a href="https://www.mattcutts.com/blog/dial-tone-moments/">Matt Cutts: Dial tone moments</a></li>
-<li><a href="https://aws.amazon.com/blogs/aws/track-aws-with-config/">Track AWS Resource Configurations With AWS Config</a></li>
-<li><a href="https://aws.amazon.com/blogs/aws/code-management-and-deployment/">New AWS Tools for Code Management and Deployment</a></li>
-<li><a href="http://weblog.rubyonrails.org/2014/11/19/Rails-4-0-11-1-and-4-1-7-1-have-been-released/">Rails 4.0.11.1 and 4.1.7.1 have been released</a></li>
-<li><a href="http://techblog.netflix.com/2014/11/nodejs-in-flames.html">Netflix: Node.js in Flames</a></li>
-<li><a href="http://nerds.airbnb.com/maintaining-quality-scale/">Airbnb: Maintaining Quality at Scale</a></li>
-<li><a href="http://nerds.airbnb.com/testing-at-airbnb/">Airbnb: Testing</a></li>
-<li><a href="http://nerds.airbnb.com/experiments-at-airbnb/">Airbnb: Experiments</a></li>
-<li><a href="http://nerds.airbnb.com/openair-algorithmic-pricing/">Airbnb: Algorithmic pricing</a></li>
-<li><a href="https://gigaom.com/2014/06/30/the-dark-side-of-io-how-the-u-k-is-making-web-domain-profits-from-a-shady-cold-war-land-deal/">The dark side of .io: How the U.K. is making web domain profits from a shady Cold War land deal</a></li>
-<li><a href="https://developer.github.com/guides/traversing-with-pagination/">Traversing with Pagination</a></li>
-<li><a href="http://www.theguardian.com/world/2014/nov/09/berlins-digital-exiles-tech-activists-escape-nsa">Berlin’s digital exiles: where tech activists go to escape the NSA</a></li>
-<li>7 Rules for Creating Gorgeous UI - <a href="https://medium.com/@erikdkennedy/7-rules-for-creating-gorgeous-ui-part-1-559d4e805cda">Part 1</a> and <a href="https://medium.com/@erikdkennedy/7-rules-for-creating-gorgeous-ui-part-2-430de537ba96">Part 2</a></li>
-</ul>
-
 </div>
   
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/11/24/friday-links-november-21st/">Read on &rarr;</a>
+    </footer>
   
 
 
@@ -180,60 +165,13 @@ worth sharing. Each monday we&rsquo;ll publish that list here on the Blog.</p>
 </div>
 <aside class="sidebar">
   
-    <section>
-  <h1>Recent Posts</h1>
-  <ul id="recent_posts">
     
-      <li class="post">
-        <a href="/blog/2014/11/24/one-in-a-has-many-access-special-association-objects-in-activerecord/">One in a `has_many` - Access Special Association Objects in ActiveRecord</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/11/24/friday-links-november-21st/">Friday Links - November 21st</a>
-      </li>
-    
-  </ul>
-</section>
-
-<section>
-  <h1>GitHub Repos</h1>
-  <ul id="gh_repos">
-    <li class="loading">Status updating&#8230;</li>
-  </ul>
-  
-  <a href="https://github.com/Devex">@Devex</a> on GitHub
-  
-  <script type="text/javascript">
-    $(document).ready(function(){
-        if (!window.jXHR){
-            var jxhr = document.createElement('script');
-            jxhr.type = 'text/javascript';
-            jxhr.src = '/javascripts/libs/jXHR.js';
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(jxhr, s);
-        }
-
-        github.showRepos({
-            user: 'Devex',
-            count: 10,
-            skip_forks: false,
-            target: '#gh_repos'
-        });
-    });
-  </script>
-  <script src="/javascripts/github.js" type="text/javascript"> </script>
-</section>
-
-
-
-
-
   
 </aside>
 
     </div>
   </div>
-  <footer role="contentinfo"><p>
+  <footer role="contentinfo"><p class="centered">
   Copyright &copy; 2014 - Devex -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>

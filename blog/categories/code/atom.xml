@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Code | Devex Tech Blog]]></title>
   <link href="http://devex.github.io/blog/categories/code/atom.xml" rel="self"/>
   <link href="http://devex.github.io/"/>
-  <updated>2014-11-24T10:26:45-05:00</updated>
+  <updated>2014-11-25T02:41:45-05:00</updated>
   <id>http://devex.github.io/</id>
   <author>
     <name><![CDATA[Devex]]></name>
@@ -28,8 +28,8 @@ one is featured.</p>
 
 <h2>How a lot of people do it</h2>
 
-<p>A pattern that seems to be quite common is to <a href="http://api.rubyonrails.org/classes/ActiveRecord/Associations/ClassMethods.html#module-ActiveRecord::Associations::ClassMethods-label-Association+extensions">extend the association by
-implementing a method that gets you the specific record</a>:</p>
+<p>A pattern that seems to be quite common is to
+<a href="http://api.rubyonrails.org/classes/ActiveRecord/Associations/ClassMethods.html#module-ActiveRecord::Associations::ClassMethods-label-Association+extensions">extend the association by implementing a method that gets you the specific record</a>:</p>
 
 <pre><code class="ruby">class User &lt; ActiveRecord::Base
   has_many :emails do

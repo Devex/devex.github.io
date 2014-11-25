@@ -4,7 +4,7 @@
   <title><![CDATA[Devex Tech Blog]]></title>
   <link href="http://devex.github.io/atom.xml" rel="self"/>
   <link href="http://devex.github.io/"/>
-  <updated>2014-11-24T10:26:45-05:00</updated>
+  <updated>2014-11-25T02:41:45-05:00</updated>
   <id>http://devex.github.io/</id>
   <author>
     <name><![CDATA[Devex]]></name>
@@ -28,8 +28,8 @@ one is featured.</p>
 
 <h2>How a lot of people do it</h2>
 
-<p>A pattern that seems to be quite common is to <a href="http://api.rubyonrails.org/classes/ActiveRecord/Associations/ClassMethods.html#module-ActiveRecord::Associations::ClassMethods-label-Association+extensions">extend the association by
-implementing a method that gets you the specific record</a>:</p>
+<p>A pattern that seems to be quite common is to
+<a href="http://api.rubyonrails.org/classes/ActiveRecord/Associations/ClassMethods.html#module-ActiveRecord::Associations::ClassMethods-label-Association+extensions">extend the association by implementing a method that gets you the specific record</a>:</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -166,6 +166,9 @@ breaking the list of primary email addresses&hellip;</p>
     <id>http://devex.github.io/blog/2014/11/24/friday-links-november-21st</id>
     <content type="html"><![CDATA[<p>Every friday we pass each other some links that we read during the week and deem
 worth sharing. Each monday we&rsquo;ll publish that list here on the Blog.</p>
+
+<!-- more -->
+
 
 <ul>
 <li><a href="https://www.schneier.com/blog/archives/2014/11/a_new_free_ca.html">Schneier: New free CA</a></li>

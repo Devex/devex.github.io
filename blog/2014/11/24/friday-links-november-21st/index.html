@@ -29,7 +29,6 @@ worth sharing. Each monday we&rsquo;ll publish that list here on the &hellip;">
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 
   
   <script type="text/javascript">
@@ -47,7 +46,7 @@ worth sharing. Each monday we&rsquo;ll publish that list here on the &hellip;">
 
 </head>
 
-<body   >
+<body    class="collapse-sidebar sidebar-footer" >
   <header role="banner"><hgroup>
   <h1><a href="/">Devex Tech Blog</a></h1>
   
@@ -69,8 +68,9 @@ worth sharing. Each monday we&rsquo;ll publish that list here on the &hellip;">
 </form>
   
 <ul class="main-navigation">
-  <li><a href="/">Blog</a></li>
-  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/">BLOG</a></li>
+  <li><a href="/blog/archives">ARCHIVES</a></li>
+  <li><a href="https://www.devex.com">DEVEX.COM</a></li>
 </ul>
 
 </nav>
@@ -103,6 +103,9 @@ worth sharing. Each monday we&rsquo;ll publish that list here on the &hellip;">
 <div class="entry-content"><p>Every friday we pass each other some links that we read during the week and deem
 worth sharing. Each monday we&rsquo;ll publish that list here on the Blog.</p>
 
+<!-- more -->
+
+
 <ul>
 <li><a href="https://www.schneier.com/blog/archives/2014/11/a_new_free_ca.html">Schneier: New free CA</a></li>
 <li><a href="http://googlewebmastercentral.blogspot.de/2014/11/helping-users-find-mobile-friendly-pages.html">Google: Helping users find mobile-friendly pages</a></li>
@@ -130,7 +133,9 @@ worth sharing. Each monday we&rsquo;ll publish that list here on the Blog.</p>
       
   
 
-<span class="byline author vcard">Posted by <span class="fn">Devex</span></span>
+<span class="byline author vcard">Posted by <span class="fn">
+  <a target="_blank" href="https://www.github.com/Devex">Devex</a>
+</span></span>
 
       
 
@@ -177,61 +182,14 @@ worth sharing. Each monday we&rsquo;ll publish that list here on the Blog.</p>
 
 <aside class="sidebar">
   
-    <section>
-  <h1>Recent Posts</h1>
-  <ul id="recent_posts">
     
-      <li class="post">
-        <a href="/blog/2014/11/24/one-in-a-has-many-access-special-association-objects-in-activerecord/">One in a `has_many` - Access Special Association Objects in ActiveRecord</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2014/11/24/friday-links-november-21st/">Friday Links - November 21st</a>
-      </li>
-    
-  </ul>
-</section>
-
-<section>
-  <h1>GitHub Repos</h1>
-  <ul id="gh_repos">
-    <li class="loading">Status updating&#8230;</li>
-  </ul>
-  
-  <a href="https://github.com/Devex">@Devex</a> on GitHub
-  
-  <script type="text/javascript">
-    $(document).ready(function(){
-        if (!window.jXHR){
-            var jxhr = document.createElement('script');
-            jxhr.type = 'text/javascript';
-            jxhr.src = '/javascripts/libs/jXHR.js';
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(jxhr, s);
-        }
-
-        github.showRepos({
-            user: 'Devex',
-            count: 10,
-            skip_forks: false,
-            target: '#gh_repos'
-        });
-    });
-  </script>
-  <script src="/javascripts/github.js" type="text/javascript"> </script>
-</section>
-
-
-
-
-
   
 </aside>
 
 
     </div>
   </div>
-  <footer role="contentinfo"><p>
+  <footer role="contentinfo"><p class="centered">
   Copyright &copy; 2014 - Devex -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
