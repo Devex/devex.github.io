@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Friday Links | Devex Tech Blog]]></title>
   <link href="http://devex.github.io/blog/categories/friday-links/atom.xml" rel="self"/>
   <link href="http://devex.github.io/"/>
-  <updated>2014-11-25T02:41:45-05:00</updated>
+  <updated>2014-12-03T05:18:43-05:00</updated>
   <id>http://devex.github.io/</id>
   <author>
     <name><![CDATA[Devex]]></name>
@@ -12,6 +12,27 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Friday Links - November 28th]]></title>
+    <link href="http://devex.github.io/blog/2014/12/02/friday-links-november-28th/"/>
+    <updated>2014-12-02T10:26:10-05:00</updated>
+    <id>http://devex.github.io/blog/2014/12/02/friday-links-november-28th</id>
+    <content type="html"><![CDATA[<p>Here are last week&rsquo;s Friday Links. Enjoy!</p>
+
+<ul>
+<li><a href="http://www.meetup.com/Barcelona-Free-Software-Users-Hackers/events/218591509/">Meetup in Barcelona: A story about tanks, the UN and Python</a></li>
+<li><a href="http://blog.codinghorror.com/because-reading-is-fundamental-2/">coding horror: Because Reading is Fundamental</a></li>
+<li><a href="https://www.mattcutts.com/blog/premortem/">Matt Cutts: Premortems</a></li>
+<li><a href="http://www.brucelawson.co.uk/2014/device-detection-responsive-web-design/">Device Detection vs Responsive Web Design</a></li>
+<li><a href="http://samsaffron.com/archive/2014/12/01/speeding-up-rails-4-2">Speeding up Rails 4.2</a></li>
+<li><a href="http://news.sciencemag.org/funding/2014/11/gates-foundation-require-immediate-free-access-journal-articles">Gates Foundation to require immediate free access for journal articles</a></li>
+<li><a href="http://www.enterprisetech.com/2014/11/14/rare-peek-massive-scale-aws/">A Rare Peek Into The Massive Scale of AWS</a></li>
+<li><a href="https://www.omniref.com/blog/blog/2014/11/18/ko1-at-rubyconf-2014-massive-garbage-collection-speedup-in-ruby-2-dot-2/">Ko1 at RubyConf 2014: Massive Garbage Collection Speedup in Ruby 2.2</a></li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Friday Links - November 21st]]></title>
