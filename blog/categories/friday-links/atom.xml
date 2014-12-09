@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Friday Links | Devex Tech Blog]]></title>
   <link href="http://devex.github.io/blog/categories/friday-links/atom.xml" rel="self"/>
   <link href="http://devex.github.io/"/>
-  <updated>2014-12-03T05:18:43-05:00</updated>
+  <updated>2014-12-09T04:59:15-05:00</updated>
   <id>http://devex.github.io/</id>
   <author>
     <name><![CDATA[Devex]]></name>
@@ -12,6 +12,25 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Friday Links - December 5th]]></title>
+    <link href="http://devex.github.io/blog/2014/12/09/friday-links-december-5th/"/>
+    <updated>2014-12-09T04:41:03-05:00</updated>
+    <id>http://devex.github.io/blog/2014/12/09/friday-links-december-5th</id>
+    <content type="html"><![CDATA[<ul>
+<li><a href="https://www.schneier.com/blog/archives/2014/12/corporations_mi.html">Schneier: Corporations Misusing Our Data</a></li>
+<li><a href="https://codeascraft.com/2014/12/04/juggling-multiple-elasticsearch-instances-on-a-single-host/">Etsy: Juggling Multiple Elasticsearch Instances on a Single Host</a></li>
+<li><a href="http://calendar.perfplanet.com/2014/http-2-0-is-coming-be-ready/">Performance Calendar: HTTP 2.0 is coming, be ready</a></li>
+<li><a href="http://oobrien.com/2014/12/all-the-tweets/">Suprageography: All the Tweets</a></li>
+<li><a href="https://github.com/blog/1933-introducing-organization-webhooks">Github: Introducing organization webhooks (finally)</a></li>
+<li><a href="http://googlewebmastercentral.blogspot.com.es/2014/12/are-you-robot-introducing-no-captcha.html">Google: Are you a robot? Introducing “No CAPTCHA reCAPTCHA”</a></li>
+<li><a href="http://randsinrepose.com/archives/the-qa-mindset">Rand: The QA Mindset</a></li>
+<li><a href="https://aws.amazon.com/blogs/aws/simplified-reserved-instances/">AWS: Simplifying the EC2 Reserved Instance Model</a></li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Friday Links - November 28th]]></title>
