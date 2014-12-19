@@ -8,6 +8,8 @@ categories:
 
 ---
 
+![Merry Christmas!](http://gifs.joelglovier.com/will-ferrell/elevator-christmas-tree.gif)
+
 ## December 12th
 
 - [Replacing Throwing Exceptions with Notification in Validations](http://martinfowler.com/articles/replaceThrowWithNotification.html)
