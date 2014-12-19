@@ -1,6 +1,4 @@
-$sans: "Helvetica Neue", Arial, sans-serif;
-//$serif: "Baskerville", serif;
-//$mono: "Courier", monospace;
-$heading-font-family: $sans;
-$header-title-font-family: $sans;
+$mono: Menlo, Monaco, "Andale Mono", "lucida console", "Courier New", monospace !default;
+$heading-font-family: $mono;
+$header-title-font-family: $mono;
 $header-subtitle-font-family: "Courier", monospace;

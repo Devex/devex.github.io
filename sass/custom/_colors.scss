@@ -1,5 +1,8 @@
 // Here you can easily change your sites's color scheme.
 
+$orange: #FF9900;
+$text-color: #000;
+
 $main-bg: #FFF;
 $page-bg: #FFF;
 $header-bg: #FFF;
@@ -11,8 +14,13 @@ $nav-bg: #4D4D4D;
 $nav-bg-front: none;
 $nav-bg-back: #4D4D4D;
 $nav-color: #FFF;
-$nav-color-hover: #FF9900;
+$nav-color-hover: $orange;
 
 $footer-bg: #FFF;
 $footer-bg-front: none;
 $footer-bg-back: #FFF;
+
+$link-color: $text-color;
+$link-color-visited: $text-color;
+$link-color-hover: $orange;
+$link-color-active: $orange;

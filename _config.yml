@@ -4,7 +4,7 @@
 
 url: http://devex.github.io
 title: Devex Tech Blog
-subtitle: Devex.do(:good).well()
+subtitle: <span class="keyword">Devex</span>.do(<span class="keyword">:good</span>).well()
 author: Devex
 simple_search: https://www.google.com/search
 description:
