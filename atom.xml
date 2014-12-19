@@ -4,7 +4,7 @@
   <title><![CDATA[Devex Tech Blog]]></title>
   <link href="http://devex.github.io/atom.xml" rel="self"/>
   <link href="http://devex.github.io/"/>
-  <updated>2014-12-09T04:59:15-05:00</updated>
+  <updated>2014-12-19T08:12:50-05:00</updated>
   <id>http://devex.github.io/</id>
   <author>
     <name><![CDATA[Devex]]></name>
@@ -12,6 +12,39 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Accumulated Christmas Friday Links]]></title>
+    <link href="http://devex.github.io/blog/2014/12/19/accumulated-friday-links/"/>
+    <updated>2014-12-19T07:55:58-05:00</updated>
+    <id>http://devex.github.io/blog/2014/12/19/accumulated-friday-links</id>
+    <content type="html"><![CDATA[<p><img src="http://gifs.joelglovier.com/will-ferrell/elevator-christmas-tree.gif" alt="Merry Christmas!" /></p>
+
+<h2>December 12th</h2>
+
+<ul>
+<li><a href="http://martinfowler.com/articles/replaceThrowWithNotification.html">Replacing Throwing Exceptions with Notification in Validations</a></li>
+<li><a href="http://pudo.org/blog/2014/12/03/newsclipse.html">What if journalists had story writing tools as powerful as those used by coders?</a></li>
+<li><a href="https://medium.com/@andrey_cheptsov/top-20-navigation-features-in-intellij-idea-ed8c17075880">Top 20 Navigation Features in IntelliJ IDEA (Most of it should work for RubyMine as well)</a></li>
+<li><a href="http://www.paperplanes.de/2014/12/10/from-open-to-minimum-vacation-policy.html">From Open (Unlimited) to Minimum Vacation Policy</a></li>
+<li><a href="https://codeascraft.com/2014/12/11/make-performance-part-of-your-workflow/">Make Performance Part of Your Workflow</a></li>
+<li><a href="http://calendar.perfplanet.com/2014/the-pain-of-duplicate-scripts/">The Pain of Duplicate Scripts</a></li>
+<li><a href="http://www.tedunangst.com/flak/post/random-in-the-wild">random in the wild (via lwn) &ldquo;Younger programmers prefer srand48.&rdquo;</a></li>
+</ul>
+
+
+<h2>December 19th</h2>
+
+<ul>
+<li><a href="https://blog.docker.com/2014/12/dockercon-europe-keynote-state-of-the-art-in-microservices-by-adrian-cockcroft-battery-ventures/">State of the Art in Microservices (DockerCon EU Keynote)</a></li>
+<li><a href="http://www.postgresql.org/about/news/1557/">PostgreSQL 9.4 released</a></li>
+<li><a href="http://www.thoughtworks.com/conferences/rethink-dallas-2014">Three talks from the Rethink Conference</a></li>
+<li><a href="http://highscalability.com/blog/2014/12/17/the-big-problem-is-medium-data.html">The Big Problem is Medium Data</a></li>
+<li><a href="http://calendar.perfplanet.com/2014/async-fragments-rediscovering-progressive-html-rendering-with-marko/">Async Fragments: Rediscovering Progressive HTML Rendering with Marko</a></li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Friday Links - December 5th]]></title>
