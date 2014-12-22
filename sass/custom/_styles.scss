@@ -4,6 +4,19 @@
 html { background: $page-bg; }
 body > div > div { border-right-width: 0; }
 
+body > header h1 {
+  font-size: 2.5em;
+  @extend .heading;
+  font-family: $header-title-font-family;
+  font-weight: bold;
+  line-height: 1.2em;
+  margin-bottom: 0.0em;
+}
+
+h1 {
+  font-size: 2em;
+}
+
 .centered {
   width: 100%;
   text-align: center;
@@ -13,6 +26,8 @@ body > nav {
   padding: 10px 20px;
 }
 
+ul, ol { &, ul, ol { margin-left: 2em; } }
+
 body > nav form .search {
   font-size: 1.2em;
   line-height: 1.3em;
@@ -21,7 +36,12 @@ body > nav form .search {
   background-color: #FFF;
   border: 1px solid $nav-border;
   &:focus {
-    border-color: $nav-color-hover;
-    @include box-shadow($nav-color-hover 0 0 4px, $nav-color-hover 0 0 3px inset);
+    border-color: $orange;
+    @include box-shadow($orange 0 0 4px, $orange 0 0 3px inset);
   }
+}
+
+.keyword {
+  color:  $orange;
+  font-weight: bold;
 }
