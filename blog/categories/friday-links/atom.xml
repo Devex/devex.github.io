@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Friday Links | Devex Tech Blog]]></title>
   <link href="http://devex.github.io/blog/categories/friday-links/atom.xml" rel="self"/>
   <link href="http://devex.github.io/"/>
-  <updated>2014-12-22T01:57:47-05:00</updated>
+  <updated>2015-01-08T05:30:56-05:00</updated>
   <id>http://devex.github.io/</id>
   <author>
     <name><![CDATA[Devex]]></name>
@@ -12,6 +12,42 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Holiday Links!]]></title>
+    <link href="http://devex.github.io/blog/2015/01/08/holiday-links/"/>
+    <updated>2015-01-08T04:23:34-05:00</updated>
+    <id>http://devex.github.io/blog/2015/01/08/holiday-links</id>
+    <content type="html"><![CDATA[<p>We hope you had nice and happy holidays! Here&rsquo;s some of the things Devexers have
+been reading during the last weeks&hellip;</p>
+
+<!-- more -->
+
+
+<ul>
+<li><a href="http://weblog.rubyonrails.org/2015/1/6/Rails-4-1-9-and-4-0-13-have-been-released/">Rails 4.1.9 and 4.0.13 have been released!</a></li>
+<li><a href="https://blog.twitter.com/2015/introducing-practical-and-robust-anomaly-detection-in-a-time-series">Twitter: Introducing practical and robust anomaly detection in a time series</a></li>
+<li><a href="https://www.kickstarter.com/backing-and-hacking/engineering-year-in-review-2014">Kickstarter: Engineering Year in Review 2014</a></li>
+<li><a href="https://www.youtube.com/watch?v=b_855b7DRJY&amp;">Etsy: Raffi Krikorian - Every Problem is a Scaling Problem - Dec. 17, 2014</a></li>
+<li><a href="http://www.brandonsavage.net/the-pitfalls-of-code-review-and-how-to-fix-them/">The Pitfalls of Code Review (And How To Fix Them)</a></li>
+<li><a href="http://calendar.perfplanet.com/2014/simplify-speed-with-the-halt-number/">Simplify speed with the HALT number</a></li>
+<li><a href="http://calendar.perfplanet.com/2014/the-power-of-perceived-performance/">The Power of Perceived Performance</a></li>
+<li><a href="http://weblog.rubyonrails.org/2014/12/19/Rails-4-2-final/">Rails 4.2: Active Job, Asynchronous Mails, Adequate Record, Web Console, Foreign Keys</a></li>
+<li><a href="https://codeascraft.com/2014/12/22/engineering-rotation/">We Invite Everyone at Etsy to Do an Engineering Rotation: Here’s why</a></li>
+<li><a href="http://calendar.perfplanet.com/2014/the-changing-role-of-the-browser-cache/">The changing role of the browser cache</a></li>
+<li><a href="https://t37.net/is-docker-ready-for-production-feedbacks-of-a-2-weeks-hands-on.html">Is Docker ready for production? Feedbacks of a 2 weeks hands on</a></li>
+<li><a href="http://awardwinningfjords.com/2012/12/30/dont-fork.html">Don&rsquo;t Fork</a></li>
+<li><a href="https://www.youtube.com/watch?v=eNliOm9NtCM">How Google Backs Up the Internet</a></li>
+<li><a href="http://rubini.us/2014/12/31/matz-s-ruby-developers-don-t-use-rubyspec/">Matz&rsquo;s Ruby Developers Don&rsquo;t Use RubySpec and It&rsquo;s Hurting Ruby</a></li>
+<li><a href="http://aeon.co/magazine/psychology/why-broken-sleep-is-a-golden-time-for-creativity/">Broken Sleep</a></li>
+<li><a href="http://m.theatlantic.com/magazine/archive/2015/01/does-global-warming-make-me-look-fat/383509/?single_page=true">The Benefits of Being Cold (one more reason to keep the heating off, girls of the BCN office!)</a></li>
+<li><a href="http://www.slate.com/articles/news_and_politics/foreigners/2014/12/the_world_is_not_falling_apart_the_trend_lines_reveal_an_increasingly_peaceful.single.html">The World Is Not Falling Apart</a></li>
+<li><a href="http://www.bennadel.com/blog/2439-my-experience-with-angularjs-the-super-heroic-javascript-mvw-framework.htm">My experience with AngularJS, - The Super- heroic Javascript MVW Framework</a></li>
+<li><a href="http://www.schneems.com/2014/12/15/hashie-considered-harmful.html">Hashie Considered Harmful - An Ode to Hash and OpenStruct</a></li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Accumulated Christmas Friday Links]]></title>
