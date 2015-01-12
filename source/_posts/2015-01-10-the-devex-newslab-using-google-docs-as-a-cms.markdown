@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "The Devex NewsLab: Using Google Docs as a CMS"
-date: 2015-01-10 13:42:38 +0100
+date: 2015-01-12 13:00:00 +0100
 author: dsager
 comments: true
 categories:
@@ -41,6 +41,7 @@ When we sat down to think about requirements of a new solution, we came up with 
 - One general overview of all articles being worked on
 - Transparency regarding the assignments or estimated publication dates
 - Improved task overview for individuals (i.e. personalized task list)
+- Each step of the workflow should be accessible as a mobile-friendly version
 - Unify the look and feel of an article's presentation on the website
 - Writers and editors shouldn't need to know HTML or CSS
 
@@ -54,6 +55,7 @@ Giving this some thought it seemed like the perfect solution:
 - Sharing and access management is fairly easy, no more email attachments!
 - Google Docs can be exported to HTML or ODF (i.e. XML), so the content can be processed by an external app
 - By using shared calendar events every person gets his personal agenda
+- There are official mobile applications from Google for editing documents or checking your calendar
 
 Great, what are we waiting for, let's do it!
 
@@ -71,22 +73,21 @@ Also the spreadsheet was not providing the level of overview we had in mind.
 But we were able to get early feedback from the writers and editors and also gain valuable experience with the Google Apps ecosystem.
 
 The next step was to link the Ruby application powering our website to the Google services.
-This integration currently has three different "channels":
+This integration is currently based on three different types of communication with Google APIs:
 
 - **Manage documents**: As soon as someone creates an article on our website an API call to Google Drive creates a corresponding document.
   The unique document Id is then stored with the article object in our database.
 - **Manage calendar events**: Each article can have a deadline (when it should be completed by the writer) and an estimated publication date.
-  An API call creates this event in a specific calendar and invites the people who are interested in the article (assignees, editors & watchers).
+  An API call creates these events in a specific Google calendar and sends invites to the people who work on the article (assignees, editors & watchers).
+  In case the dates change (e.g. an article is postponed) the calendar events are updated accordingly.
 - **Process the content**: For each article there's a button on our website called "Pull latest Content from Google".
   Clicking it does exactly what it says, it grabs an HTML export of the document, processes it and saves a clean HTML snippet that can be displayed on our site.
   The processing detects various elements like images, video (YouTube & Vimeo) or slideshow links, alignments, quotes or headings.
   For example have a look at [this document](https://docs.google.com/document/d/10pXRPT9J4VzvfdR5vSj4-NJWfHVRwkGAdSn7S4Ew-xQ/edit?usp=sharing) which results in [this article](https://www.devex.com/news/kennedy-johnson-and-the-early-years-83339).
-  The process is continuously tested using a reference document to detect changes in the HTML structure provided by Google.
+  The content processing is continuously tested using a reference document to detect changes in the HTML structure provided by Google.
 
 Apart from the integration with Google the application has some additional features like notifications for writers, editors and watchers.
 It also provides the general overview via filterable list and calendar views.
 
 So far we are really happy with our new CMS although we have heaps of improvements in our Backlog.
 Since we deployed it 10 months ago over 2,200 articles were created and published.
-
-*Note: We want to publish parts of the code as open source at some point in the near future, mainly the parser for the Google Doc and some stuff around it. You'll read about it here!*
