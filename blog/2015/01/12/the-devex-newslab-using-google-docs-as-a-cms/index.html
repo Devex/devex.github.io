@@ -1,0 +1,303 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>The Devex NewsLab: Using Google Docs as a CMS - Devex Tech Blog</title>
+  <meta name="author" content="Devex">
+
+  
+  <meta name="description" content="This article describes our current content management solution and gives some insight on the parts of the implementation we think are interesting. As &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://devex.github.io/blog/2015/01/12/the-devex-newslab-using-google-docs-as-a-cms">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Devex Tech Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-1173244-22']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body    class="collapse-sidebar sidebar-footer" >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Devex Tech Blog</a></h1>
+  
+    <h2><span class="keyword">Devex</span>.do(<span class="keyword">:good</span>).well()</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:devex.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">BLOG</a></li>
+  <li><a href="/blog/archives">ARCHIVES</a></li>
+  <li><a href="https://www.devex.com">DEVEX.COM</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">The Devex NewsLab: Using Google Docs as a CMS</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-01-12T07:00:00-05:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>12</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>7:00 am</span></time>
+        
+           | <a href="#disqus_thread"
+             data-disqus-identifier="http://devex.github.io">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>This article describes our current content management solution and gives some insight on the parts of the implementation we think are interesting.</p>
+
+<p>As you might know a big part of our website is dedicated to <a href="https://www.devex.com/news">News content covering various aspects of international development</a>.
+At Devex we usually publish around 10 articles per day which are sometimes planned and worked on several days or even weeks in advance.
+There are different people involved in the process including both internal and external writers, editors, researchers or marketing folks.
+Some of them contribute to the article&rsquo;s content while others just need to be aware what is going on to coordinate their own work like social media campaigns.</p>
+
+<!-- more -->
+
+
+<h2>Where we come from</h2>
+
+<p>Editors maintained individual spreadsheets to schedule and coordinate the work of several writers.
+These spreadsheets contained article meta data like estimated publication date, category, assigned persons or the newsletter this article should appear in.
+A writer would work on an assigned article as a Word document and send the draft to editors or collaborating writers.
+Changes were made to the article, a new version was saved (e.g. <code>awesome_article_v7.doc</code>) and sent again via email.
+I guess I don&rsquo;t have to elaborate on the downsides of this workflow - just think briefly about transparency, revision control or the overhead of individual email and file organization&hellip;</p>
+
+<p>Once an article reached a &ldquo;to be published&rdquo; state the editor would send it to one of our web publishers who then would extract and upload the images to Amazon S3, copy the content to a web-based CMS and format it (TinyMCE).
+If everything goes well, the article could be published and would appear on the website.
+Any further editorial changes or fixes needed to be done in the web CMS.
+Again I think that the pitfalls of this publishing workflow are obvious (steps that are repeated manually up to 10 times a day, lack of transparency, data inconsistency and so forth).</p>
+
+<h2>Where we figured we should be</h2>
+
+<p>When we sat down to think about requirements of a new solution, we came up with the following:</p>
+
+<ul>
+<li>Everyone needs easy access to the article content in progress</li>
+<li>Everyone should be able to publish an article (i.e. decrease the overhead)</li>
+<li>Any change to the article content needs to be recorded (revision history)</li>
+<li>One general overview of all articles being worked on</li>
+<li>Transparency regarding the assignments or estimated publication dates</li>
+<li>Improved task overview for individuals (i.e. personalized task list)</li>
+<li>Each step of the workflow should be accessible as a mobile-friendly version</li>
+<li>Unify the look and feel of an article&rsquo;s presentation on the website</li>
+<li>Writers and editors shouldn&rsquo;t need to know HTML or CSS</li>
+</ul>
+
+
+<p>While regarding several CMS solutions we stumbled upon a
+<a href="https://docs.google.com/fileview?id=0B5Y-fwYJF2hLNzM5ZTIwODMtNzgwOS00MzYyLWE0MTYtMDJlNTBjYjZmMzMy">Google Apps case study about the Huffington Post</a>
+which states that their blog and editorial teams use Google Docs for collaboration and share editorial calendars.
+Giving this some thought it seemed like the perfect solution:</p>
+
+<ul>
+<li>Editors and writers can work with a &ldquo;Word-like&rdquo; UI they are used to</li>
+<li>All changes are saved instantly in the cloud and each document has it&rsquo;s own revision history</li>
+<li>Sharing and access management is fairly easy, no more email attachments!</li>
+<li>Google Docs can be exported to HTML or ODF (i.e. XML), so the content can be processed by an external app</li>
+<li>By using shared calendar events every person gets his personal agenda</li>
+<li>There are official mobile applications from Google for editing documents or checking your calendar</li>
+</ul>
+
+
+<p>Great, what are we waiting for, let&rsquo;s do it!</p>
+
+<h2>How we got there</h2>
+
+<p>The first problem we encountered was pretty obvious: We are not using Google Apps!
+So migrating our roughly 120 users to Google Apps was the first step (which was considered for some time anyway).
+I spare you the details&hellip;</p>
+
+<p>To give our News team an idea of how they would be working in the future we put together a prototype using various Google services:
+A group for the editorial staff, a metadata spreadsheet, some calendars and a folder for articles.
+All tied together by a simple Google site and a web application written in Google Apps Script.
+This prototype was far from perfect as it was rather slow and the final article still had to be copied manually in order to be published.
+Also the spreadsheet was not providing the level of overview we had in mind.
+But we were able to get early feedback from the writers and editors and also gain valuable experience with the Google Apps ecosystem.</p>
+
+<p>The next step was to link the Ruby application powering our website to the Google services.
+This integration is currently based on three different types of communication with Google APIs:</p>
+
+<ul>
+<li><strong>Manage documents</strong>: As soon as someone creates an article on our website an API call to Google Drive creates a corresponding document.
+The unique document Id is then stored with the article object in our database.</li>
+<li><strong>Manage calendar events</strong>: Each article can have a deadline (when it should be completed by the writer) and an estimated publication date.
+An API call creates these events in a specific Google calendar and sends invites to the people who work on the article (assignees, editors &amp; watchers).
+In case the dates change (e.g. an article is postponed) the calendar events are updated accordingly.</li>
+<li><strong>Process the content</strong>: For each article there&rsquo;s a button on our website called &ldquo;Pull latest Content from Google&rdquo;.
+Clicking it does exactly what it says, it grabs an HTML export of the document, processes it and saves a clean HTML snippet that can be displayed on our site.
+The processing detects various elements like images, video (YouTube &amp; Vimeo) or slideshow links, alignments, quotes or headings.
+For example have a look at <a href="https://docs.google.com/document/d/10pXRPT9J4VzvfdR5vSj4-NJWfHVRwkGAdSn7S4Ew-xQ/edit?usp=sharing">this document</a> which results in <a href="https://www.devex.com/news/kennedy-johnson-and-the-early-years-83339">this article</a>.
+The content processing is continuously tested using a reference document to detect changes in the HTML structure provided by Google.</li>
+</ul>
+
+
+<p>Apart from the integration with Google the application has some additional features like notifications for writers, editors and watchers.
+It also provides the general overview via filterable list and calendar views.</p>
+
+<p>So far we are really happy with our new CMS although we have heaps of improvements in our Backlog.
+Since we deployed it 10 months ago over 2,200 articles were created and published.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">
+  <a target="_blank" href="https://www.github.com/dsager">dsager</a>
+</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2015-01-12T07:00:00-05:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>12</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>7:00 am</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/insight/'>insight</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://devex.github.io/blog/2015/01/12/the-devex-newslab-using-google-docs-as-a-cms/" data-via="d3v3x" data-counturl="http://devex.github.io/blog/2015/01/12/the-devex-newslab-using-google-docs-as-a-cms/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2015/01/08/holiday-links/" title="Previous Post: Holiday Links!">&laquo; Holiday Links!</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p class="centered">
+  Copyright &copy; 2015 - Devex -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'devexio';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://devex.github.io/blog/2015/01/12/the-devex-newslab-using-google-docs-as-a-cms/';
+        var disqus_url = 'http://devex.github.io/blog/2015/01/12/the-devex-newslab-using-google-docs-as-a-cms/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
