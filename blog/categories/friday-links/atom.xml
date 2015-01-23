@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Friday Links | Devex Tech Blog]]></title>
   <link href="http://devex.github.io/blog/categories/friday-links/atom.xml" rel="self"/>
   <link href="http://devex.github.io/"/>
-  <updated>2015-01-12T06:56:06-05:00</updated>
+  <updated>2015-01-23T11:42:58-05:00</updated>
   <id>http://devex.github.io/</id>
   <author>
     <name><![CDATA[Devex]]></name>
@@ -12,6 +12,46 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Friday Links]]></title>
+    <link href="http://devex.github.io/blog/2015/01/23/friday-links/"/>
+    <updated>2015-01-23T08:54:24-05:00</updated>
+    <id>http://devex.github.io/blog/2015/01/23/friday-links</id>
+    <content type="html"><![CDATA[<p>Here are some accumulated links we&rsquo;ve been passing around recently&hellip;</p>
+
+<!-- more -->
+
+
+<ul>
+<li><a href="https://hbr.org/2014/12/a-testable-idea-is-better-than-a-good-idea">A testable idea is better than a good idea</a></li>
+<li><a href="https://hbr.org/2015/01/to-make-money-with-digital-be-an-innovator-not-a-strategist">To make money with digital be an innovator not a strategist</a></li>
+<li><a href="http://www.slideshare.net/innovgames/why-buy-a-feature-is-great-at-prioritizing-features">Buy a feature</a></li>
+<li><a href="http://www.forbes.com/sites/rawnshah/2015/01/14/the-facebook-elephant-has-stepped-into-the-office/">The Facebook Elephant Has Stepped Into The Office</a></li>
+<li><a href="http://analytics.blogspot.de/2015/01/simplify-your-google-analytics.html">Simplify your Google Analytics Reporting with Add-ons for Google Sheets</a></li>
+<li><a href="https://www.youtube.com/watch?v=aD9mZDJzb58&amp;">Stochastic Optimization for x86 Binaries</a></li>
+<li><a href="http://www.quirksmode.org/blog/archives/2015/01/the_problem_wit.html">The problem with Angular</a></li>
+<li><a href="https://github.com/blog/1939-how-github-uses-github-to-document-github">How GitHub uses GitHub to document GitHub</a></li>
+<li><a href="http://qualityisspeed.blogspot.com.es/2014/08/why-i-dont-teach-solid.html">Why I Don&rsquo;t Teach SOLID</a></li>
+<li><a href="https://developer.atlassian.com/blog/2015/01/a-better-pull-request/">A better pull request</a></li>
+<li><a href="https://github.com/blog/1943-how-to-write-the-perfect-pull-request">How to write the perfect pull request</a></li>
+<li><a href="http://thoughts.codegram.com/cleaner-safer-ruby-api-clients-with-kleisli/">Cleaner, safer Ruby API clients with Kleisli</a></li>
+<li><a href="https://modelviewculture.com/pieces/on-learn-to-code">On &ldquo;Learn to Code&rdquo; - Should industry be allowed to dictate our school curriculums?</a></li>
+<li><a href="http://youtu.be/e3vuCY1u9gc">Building a Product Backlog from Scratch</a></li>
+<li><a href="http://signalvnoise.com/posts/3838-strategies-for-getting-feedback-and-not-hating-it">Strategies for getting feedback (and not hating it)</a></li>
+<li><a href="http://www.brucelawson.co.uk/2015/why-we-cant-do-real-responsive-images-with-css-or-javascript/">Why we can’t do real responsive images with CSS or JavaScript</a></li>
+<li><a href="http://highscalability.com/blog/2015/1/21/learn-from-my-pain-5-lessons-from-ellos-adventures-in-rapid.html">Learn from my pain - 5 Lessons from Ello&rsquo;s Adventures in Rapid Scaling</a></li>
+<li><a href="https://aws.amazon.com/blogs/aws/new-auto-recovery-for-amazon-ec2/">New – Auto Recovery for Amazon EC2</a></li>
+<li><a href="http://zachholman.com/posts/how-github-writes-blog-posts/">How GitHub Writes Blog Posts</a></li>
+<li><a href="http://samy.pl/keysweeper/">Keysweeper</a></li>
+<li><a href="http://blog.codinghorror.com/the-god-login/">The God Login</a></li>
+<li><a href="https://lwn.net/Articles/628542/">Revert &ldquo;cfg80211: make WEXT compatibility unselectable&rdquo;</a></li>
+<li><a href="http://blogs.atlassian.com/2015/01/sprint-planning-atlassian/">Sprint planning at Atlassian: How we do it</a></li>
+<li><a href="http://jobs.rubynow.com/blog/11-1-behind-the-scenes-story-of-the-team-and-rails-platform-behind-kickstarter">Behind-the-Scenes Story of the Team and Rails Platform Behind Kickstarter</a></li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Holiday Links!]]></title>
@@ -117,39 +157,6 @@ been reading during the last weeks&hellip;</p>
 <li><a href="http://news.sciencemag.org/funding/2014/11/gates-foundation-require-immediate-free-access-journal-articles">Gates Foundation to require immediate free access for journal articles</a></li>
 <li><a href="http://www.enterprisetech.com/2014/11/14/rare-peek-massive-scale-aws/">A Rare Peek Into The Massive Scale of AWS</a></li>
 <li><a href="https://www.omniref.com/blog/blog/2014/11/18/ko1-at-rubyconf-2014-massive-garbage-collection-speedup-in-ruby-2-dot-2/">Ko1 at RubyConf 2014: Massive Garbage Collection Speedup in Ruby 2.2</a></li>
-</ul>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Friday Links - November 21st]]></title>
-    <link href="http://devex.github.io/blog/2014/11/24/friday-links-november-21st/"/>
-    <updated>2014-11-24T04:45:03-05:00</updated>
-    <id>http://devex.github.io/blog/2014/11/24/friday-links-november-21st</id>
-    <content type="html"><![CDATA[<p>Every friday we pass each other some links that we read during the week and deem
-worth sharing. Each monday we&rsquo;ll publish that list here on the Blog.</p>
-
-<!-- more -->
-
-
-<ul>
-<li><a href="https://www.schneier.com/blog/archives/2014/11/a_new_free_ca.html">Schneier: New free CA</a></li>
-<li><a href="http://googlewebmastercentral.blogspot.de/2014/11/helping-users-find-mobile-friendly-pages.html">Google: Helping users find mobile-friendly pages</a></li>
-<li><a href="https://codeascraft.com/2014/11/17/personalized-recommendations-at-etsy/">Personalized Recommendations at Etsy</a></li>
-<li><a href="https://www.mattcutts.com/blog/dial-tone-moments/">Matt Cutts: Dial tone moments</a></li>
-<li><a href="https://aws.amazon.com/blogs/aws/track-aws-with-config/">Track AWS Resource Configurations With AWS Config</a></li>
-<li><a href="https://aws.amazon.com/blogs/aws/code-management-and-deployment/">New AWS Tools for Code Management and Deployment</a></li>
-<li><a href="http://weblog.rubyonrails.org/2014/11/19/Rails-4-0-11-1-and-4-1-7-1-have-been-released/">Rails 4.0.11.1 and 4.1.7.1 have been released</a></li>
-<li><a href="http://techblog.netflix.com/2014/11/nodejs-in-flames.html">Netflix: Node.js in Flames</a></li>
-<li><a href="http://nerds.airbnb.com/maintaining-quality-scale/">Airbnb: Maintaining Quality at Scale</a></li>
-<li><a href="http://nerds.airbnb.com/testing-at-airbnb/">Airbnb: Testing</a></li>
-<li><a href="http://nerds.airbnb.com/experiments-at-airbnb/">Airbnb: Experiments</a></li>
-<li><a href="http://nerds.airbnb.com/openair-algorithmic-pricing/">Airbnb: Algorithmic pricing</a></li>
-<li><a href="https://gigaom.com/2014/06/30/the-dark-side-of-io-how-the-u-k-is-making-web-domain-profits-from-a-shady-cold-war-land-deal/">The dark side of .io: How the U.K. is making web domain profits from a shady Cold War land deal</a></li>
-<li><a href="https://developer.github.com/guides/traversing-with-pagination/">Traversing with Pagination</a></li>
-<li><a href="http://www.theguardian.com/world/2014/nov/09/berlins-digital-exiles-tech-activists-escape-nsa">Berlin’s digital exiles: where tech activists go to escape the NSA</a></li>
-<li>7 Rules for Creating Gorgeous UI - <a href="https://medium.com/@erikdkennedy/7-rules-for-creating-gorgeous-ui-part-1-559d4e805cda">Part 1</a> and <a href="https://medium.com/@erikdkennedy/7-rules-for-creating-gorgeous-ui-part-2-430de537ba96">Part 2</a></li>
 </ul>
 
 ]]></content>

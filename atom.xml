@@ -4,7 +4,7 @@
   <title><![CDATA[Devex Tech Blog]]></title>
   <link href="http://devex.github.io/atom.xml" rel="self"/>
   <link href="http://devex.github.io/"/>
-  <updated>2015-01-12T06:56:06-05:00</updated>
+  <updated>2015-01-23T11:42:58-05:00</updated>
   <id>http://devex.github.io/</id>
   <author>
     <name><![CDATA[Devex]]></name>
@@ -12,6 +12,46 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Friday Links]]></title>
+    <link href="http://devex.github.io/blog/2015/01/23/friday-links/"/>
+    <updated>2015-01-23T08:54:24-05:00</updated>
+    <id>http://devex.github.io/blog/2015/01/23/friday-links</id>
+    <content type="html"><![CDATA[<p>Here are some accumulated links we&rsquo;ve been passing around recently&hellip;</p>
+
+<!-- more -->
+
+
+<ul>
+<li><a href="https://hbr.org/2014/12/a-testable-idea-is-better-than-a-good-idea">A testable idea is better than a good idea</a></li>
+<li><a href="https://hbr.org/2015/01/to-make-money-with-digital-be-an-innovator-not-a-strategist">To make money with digital be an innovator not a strategist</a></li>
+<li><a href="http://www.slideshare.net/innovgames/why-buy-a-feature-is-great-at-prioritizing-features">Buy a feature</a></li>
+<li><a href="http://www.forbes.com/sites/rawnshah/2015/01/14/the-facebook-elephant-has-stepped-into-the-office/">The Facebook Elephant Has Stepped Into The Office</a></li>
+<li><a href="http://analytics.blogspot.de/2015/01/simplify-your-google-analytics.html">Simplify your Google Analytics Reporting with Add-ons for Google Sheets</a></li>
+<li><a href="https://www.youtube.com/watch?v=aD9mZDJzb58&amp;">Stochastic Optimization for x86 Binaries</a></li>
+<li><a href="http://www.quirksmode.org/blog/archives/2015/01/the_problem_wit.html">The problem with Angular</a></li>
+<li><a href="https://github.com/blog/1939-how-github-uses-github-to-document-github">How GitHub uses GitHub to document GitHub</a></li>
+<li><a href="http://qualityisspeed.blogspot.com.es/2014/08/why-i-dont-teach-solid.html">Why I Don&rsquo;t Teach SOLID</a></li>
+<li><a href="https://developer.atlassian.com/blog/2015/01/a-better-pull-request/">A better pull request</a></li>
+<li><a href="https://github.com/blog/1943-how-to-write-the-perfect-pull-request">How to write the perfect pull request</a></li>
+<li><a href="http://thoughts.codegram.com/cleaner-safer-ruby-api-clients-with-kleisli/">Cleaner, safer Ruby API clients with Kleisli</a></li>
+<li><a href="https://modelviewculture.com/pieces/on-learn-to-code">On &ldquo;Learn to Code&rdquo; - Should industry be allowed to dictate our school curriculums?</a></li>
+<li><a href="http://youtu.be/e3vuCY1u9gc">Building a Product Backlog from Scratch</a></li>
+<li><a href="http://signalvnoise.com/posts/3838-strategies-for-getting-feedback-and-not-hating-it">Strategies for getting feedback (and not hating it)</a></li>
+<li><a href="http://www.brucelawson.co.uk/2015/why-we-cant-do-real-responsive-images-with-css-or-javascript/">Why we can’t do real responsive images with CSS or JavaScript</a></li>
+<li><a href="http://highscalability.com/blog/2015/1/21/learn-from-my-pain-5-lessons-from-ellos-adventures-in-rapid.html">Learn from my pain - 5 Lessons from Ello&rsquo;s Adventures in Rapid Scaling</a></li>
+<li><a href="https://aws.amazon.com/blogs/aws/new-auto-recovery-for-amazon-ec2/">New – Auto Recovery for Amazon EC2</a></li>
+<li><a href="http://zachholman.com/posts/how-github-writes-blog-posts/">How GitHub Writes Blog Posts</a></li>
+<li><a href="http://samy.pl/keysweeper/">Keysweeper</a></li>
+<li><a href="http://blog.codinghorror.com/the-god-login/">The God Login</a></li>
+<li><a href="https://lwn.net/Articles/628542/">Revert &ldquo;cfg80211: make WEXT compatibility unselectable&rdquo;</a></li>
+<li><a href="http://blogs.atlassian.com/2015/01/sprint-planning-atlassian/">Sprint planning at Atlassian: How we do it</a></li>
+<li><a href="http://jobs.rubynow.com/blog/11-1-behind-the-scenes-story-of-the-team-and-rails-platform-behind-kickstarter">Behind-the-Scenes Story of the Team and Rails Platform Behind Kickstarter</a></li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[The Devex NewsLab: Using Google Docs as a CMS]]></title>
