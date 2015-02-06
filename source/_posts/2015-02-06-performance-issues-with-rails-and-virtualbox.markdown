@@ -10,7 +10,7 @@ categories:
 ---
 
 Two weeks ago, we noticed some performance issues with Rails in our development setup, while all our other environments, some much less powerful, were working with much better performance.
-After confirming that no recent change cause this slow-down, and running some diagnostics and measurements to record the performance in some point, this took us on a small trip into some Ruby on Rails debugging on a VirtualBox.
+After confirming that no recent change caused this slow-down, and running some diagnostics and measurements to record the performance in some point, this took us on a small trip into some Ruby on Rails debugging on a VirtualBox.
 
 <!-- more -->
 
