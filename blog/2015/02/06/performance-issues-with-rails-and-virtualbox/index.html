@@ -1,0 +1,315 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Performance Issues With Rails and VirtualBox - Devex Tech Blog</title>
+  <meta name="author" content="Devex">
+
+  
+  <meta name="description" content="Two weeks ago, we noticed some performance issues with Rails in our development setup, while all our other environments, some much less powerful, &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://devex.github.io/blog/2015/02/06/performance-issues-with-rails-and-virtualbox">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Devex Tech Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-1173244-22']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body    class="collapse-sidebar sidebar-footer" >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Devex Tech Blog</a></h1>
+  
+    <h2><span class="keyword">Devex</span>.do(<span class="keyword">:good</span>).well()</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:devex.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">BLOG</a></li>
+  <li><a href="/blog/archives">ARCHIVES</a></li>
+  <li><a href="https://www.devex.com">DEVEX.COM</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Performance Issues With Rails and VirtualBox</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-02-06T06:02:50-05:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>6</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>6:02 am</span></time>
+        
+           | <a href="#disqus_thread"
+             data-disqus-identifier="http://devex.github.io">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Two weeks ago, we noticed some performance issues with Rails in our development setup, while all our other environments, some much less powerful, were working with much better performance.
+After confirming that no recent change caused this slow-down, and running some diagnostics and measurements to record the performance in some point, this took us on a small trip into some Ruby on Rails debugging on a VirtualBox.</p>
+
+<!-- more -->
+
+
+<h2>Our development setup</h2>
+
+<p>Most of us at Devex, we use a specific setup of our apps into a <a href="https://www.virtualbox.org">VirtualBox</a> machine so we can hold a local development version of our site and check how the new features integrate before to give the work as done.
+In some cases, for feature availability, performance, and workstation power reasons, these apps, and their components run completely on this environment, but in other cases, we don&rsquo;t run all the components in the virtual machine and we do use some components from the staging (we call it develop) environment, which is quite approximate to what we need.
+So this development environment&rsquo;s architecture and infrastructure is quite different from the ones we have in staging, preproduction, and, of course, production.</p>
+
+<p>Not only that, in all our other environments, we run the apps using <a href="http://unicorn.bogomips.org/">Unicorn</a> as a daemon, with more or less workers, while in this development environment, we run <a href="http://www.ruby-doc.org/stdlib-1.9.3/libdoc/webrick/rdoc/WEBrick.html">WEBrick</a> within a screen session, just to simplify the load.</p>
+
+<h2>The problem arises</h2>
+
+<p>The problem arised when we noticed Rails was underperforming when running in the local development setup. Some measurements were taken showing up that the problem seemed to be located in our front end application, since the backend was running properly:</p>
+
+<pre><code>$ time wget -pq --no-cache --delete-after http://localhost:3002/apps/front_end/api/system/health
+real    0m0.523s
+user    0m0.000s
+sys 0m0.000s
+
+$ time wget -pq --no-cache --delete-after http://localhost:3004/public/system/health
+real    0m0.019s
+user    0m0.000s
+sys 0m0.000s
+</code></pre>
+
+<p>In that case, these two URIs correspond to the same content, but for our front end and for our back end applications, respectively, and this content is mostly text, JSON formatted.
+So, another measurement was done, which consisted into measuring the time to serve one complete page:</p>
+
+<pre><code>$ time wget -pq --no-cache --delete-after http://localhost:3002/people
+real    0m13.393s
+user    0m0.008s
+sys 0m0.032s
+</code></pre>
+
+<p>Looking for similar cases on Internet, we found some links related to <a href="http://stackoverflow.com/questions/1156759/webrick-is-very-slow-to-respond-how-to-speed-it-up">WEBrick performance improvements</a>, <a href="http://stackoverflow.com/questions/8670080/rails-3-1-on-ubuntu-11-10-under-virtualbox-very-slow">Rails performance within VirtualBox</a>, and <a href="http://www.visionfactory.com.au/blog/rails_dev_with_webrick_really_slow_in_a_">WEBrick reverse lookups</a>.</p>
+
+<p>None of the solutions we tried from these links helped to find the solution.
+We then tried doubling processors and memory available in the VM configuration, but it didn&rsquo;t solved the issue.
+Measuring with <code>atop</code> showed no bottleneck.
+Reproducibility of the issue in other computers and setups was also checked, so it was not something related to the specific setup or the hardware on which it was relying.</p>
+
+<h2>What&rsquo;s going on then?</h2>
+
+<p>Then, we started analizing the issue in some more depth, first taking a look on what was going on when the browser issued a request.
+So, using the Network view in the web inspector, we saw very long waiting times for static content, but the rest of the times were ok, no execution issues or so.</p>
+
+<p>Next step was taking a closer look to the log to see what would be happening when Rails received the static requests.
+We could confirm that the logs were written much more slowly when serving static files. So we decided to trace the WEBrick process.</p>
+
+<p>When we <code>strace</code>&rsquo;d the WEBrick process, we couldn&rsquo;t see anything meaningful, but then we learned WEBrick is threaded, so the actual requests where being attended by threads, which traces were not showed in the <code>strace</code> output.</p>
+
+<p>The trick to <a href="http://superuser.com/questions/80556/how-do-you-view-all-threads-running-on-linux">identify the thread TIDs</a> is to run the <code>ps</code> command with the <code>-T</code> option, which lists also the threads as processes, with the corresponding id.
+Then, you can <a href="http://stackoverflow.com/questions/7698209/tracing-pthreads-in-linux">run <code>strace</code> on those TIDs</a>.
+So, finally started finding errors on unavailable resources.
+We searched again and <a href="http://mitchellh.com/comparing-filesystem-performance-in-virtual-machines">found out</a> that VirtualBox uses a specific filesystem for the shared folders, with some performance problems, and that NFS is one of the fastest ones you can use.</p>
+
+<h2>The fix</h2>
+
+<p>Some of us, simply copied the shared folder content to be used to a regular directory in the VM disk.
+This fixes the issue, but introduces the need to keep copying the content when it gets updated.</p>
+
+<p>Some others of us, decided to go for NFS, which has a couple of drawbacks:</p>
+
+<ul>
+<li>It is not compliant with having a Windows host, but this is not our case.</li>
+<li><p>It requires a LAN to be setup between the host and the guest, but we solved the whole problem by adding the following to our Vagrantfile:</p>
+
+<pre><code>ip = ENV['VMSETUP_IP'] || `vboxmanage list hostonlyifs | grep IPAddress | cut -d: -f2 | tr -d ' '`.to_s.tr("\n", "") + '0'
+[...]
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  [...]
+  config.vm.network :private_network, ip: "#{ip}"
+  [...]
+  config.vm.synced_folder ".", "/vagrant", type: "nfs"
+  [...]
+end
+</code></pre></li>
+</ul>
+
+
+<p>By the way, the final measurements where:</p>
+
+<pre><code>$  time wget -pq --no-cache --delete-after http://localhost:3004/public/system/health
+
+real 0m0.016s
+user 0m0.000s
+sys 0m0.004s
+
+$ time wget -pq --no-cache --delete-after http://localhost:3002/apps/front_end/api/system/health
+
+real 0m0.066s
+user 0m0.000s
+sys 0m0.006s
+
+$ time wget -pq --no-cache --delete-after http://localhost:3002/people
+
+real 0m1.661s
+user 0m0.012s
+sys 0m0.026s
+</code></pre>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">
+  <a target="_blank" href="https://www.github.com/ifosch">ifosch</a>
+</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2015-02-06T06:02:50-05:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>6</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>6:02 am</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/infra/'>infra</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://devex.github.io/blog/2015/02/06/performance-issues-with-rails-and-virtualbox/" data-via="d3v3x" data-counturl="http://devex.github.io/blog/2015/02/06/performance-issues-with-rails-and-virtualbox/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2015/01/23/friday-links/" title="Previous Post: Friday Links">&laquo; Friday Links</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p class="centered">
+  Copyright &copy; 2015 - Devex -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'devexio';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://devex.github.io/blog/2015/02/06/performance-issues-with-rails-and-virtualbox/';
+        var disqus_url = 'http://devex.github.io/blog/2015/02/06/performance-issues-with-rails-and-virtualbox/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
