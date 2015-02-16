@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "Are you still running unsupported Ubuntu releases?"
-date: 2015-02-13 12:02:50 +0100
+title: "How to upgrade when stuck with unsupported Ubuntu Releases"
+date: 2015-02-16 16:02:50 +0100
 author: ifosch
 comments: true
 categories: 
@@ -10,8 +10,8 @@ categories:
 ---
 
 Have you ever updated your servers?
-I trust most of you had.
-Anyway, from time to time, though, we all had find an old unsupported ashaming release running in some far and forgotten server.
+I trust most of you have.
+Anyway, from time to time one finds an unsupported release, running on some forgotten server.
 In some cases, it's an unused service or something to be decommissioned, but sometimes, we should update it.
 At [Devex](https://www.devex.com), found this situation recently.
 You'll find in this article how we upgraded some cases we couldn't decommission.
@@ -21,15 +21,15 @@ You'll find in this article how we upgraded some cases we couldn't decommission.
 ## Common aspects
 
 Our infrastructure is running on AWS EC2, so we take a lot of profit from the ability to create AMI images from running instances.
-Then we could use those images to try out the upgrade without affecting the instances.
+With this approach, we could use those images to try out the upgrade without affecting the instances.
 Of course, this implies that data might be outdated, which can be fixed easily by reloading a backup from the correct instance, or by using the same procedure on the running instance later.
 
-Also, the usage of ephemeral drive mounted on `/mnt` was a good place to store backups and files we would need to save during the process.
+Also, the usage of ephemeral drive mounted on `/mnt` is a good place to store backups and files we would need to save during the process.
 
 ## Upgrading from Intrepid
 
 Our first case was upgrade an Intrepid Ubuntu server, running Postgres 8.3, to Lucid.
-We upgraded it to Lucid because we're planning to decommission the application running in here.
+We chose to stay in Lucid because this application is going to be decommissioned soon, anyway.
 However, this decommission won't happen immediately, since these features must be implemented in newer applications.
 So, the first step was getting a backup from the PostgreSQL database, running these commands:
 
@@ -38,7 +38,7 @@ So, the first step was getting a backup from the PostgreSQL database, running th
     sudo -u postgres pg_dumpall > /mnt/postgresql/backup
 
 Once the backup was saved, we upgraded intrepid packages.
-Of course the original Intrepid package repositories are down yet, but we could take use of the `old-release` repositories.
+Of course the original Intrepid package repositories are down already, but we could take use of the `old-release` repositories.
 To select them, we used the following commands:
 
     sudo cat >/etc/apt/sources.list <<EOL
