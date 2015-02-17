@@ -1,0 +1,333 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>How to Upgrade When Stuck With Unsupported Ubuntu Releases - Devex Tech Blog</title>
+  <meta name="author" content="Devex">
+
+  
+  <meta name="description" content="Have you ever updated your servers?
+I trust most of you have.
+Anyway, from time to time one finds an unsupported release, running on some forgotten &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://devex.github.io/blog/2015/02/16/ubuntu-eol-upgrades">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Devex Tech Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-1173244-22']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body    class="collapse-sidebar sidebar-footer" >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Devex Tech Blog</a></h1>
+  
+    <h2><span class="keyword">Devex</span>.do(<span class="keyword">:good</span>).well()</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:devex.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">BLOG</a></li>
+  <li><a href="/blog/archives">ARCHIVES</a></li>
+  <li><a href="https://www.devex.com">DEVEX.COM</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">How to Upgrade When Stuck With Unsupported Ubuntu Releases</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-02-16T10:02:50-05:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>16</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>10:02 am</span></time>
+        
+           | <a href="#disqus_thread"
+             data-disqus-identifier="http://devex.github.io">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Have you ever updated your servers?
+I trust most of you have.
+Anyway, from time to time one finds an unsupported release, running on some forgotten server.
+In some cases, it&rsquo;s an unused service or something to be decommissioned, but sometimes, we should update it.
+At <a href="https://www.devex.com">Devex</a>, found this situation recently.
+You&rsquo;ll find in this article how we upgraded some cases we couldn&rsquo;t decommission.</p>
+
+<!-- more -->
+
+
+<h2>Common aspects</h2>
+
+<p>Our infrastructure is running on AWS EC2, so we take a lot of profit from the ability to create AMI images from running instances.
+With this approach, we could use those images to try out the upgrade without affecting the instances.
+Of course, this implies that data might be outdated, which can be fixed easily by reloading a backup from the correct instance, or by using the same procedure on the running instance later.</p>
+
+<p>Also, the usage of ephemeral drive mounted on <code>/mnt</code> is a good place to store backups and files we would need to save during the process.</p>
+
+<h2>Upgrading from Intrepid</h2>
+
+<p>Our first case was upgrade an Intrepid Ubuntu server, running Postgres 8.3, to Lucid.
+We chose to stay in Lucid because this application is going to be decommissioned soon, anyway.
+However, this decommission won&rsquo;t happen immediately, since these features must be implemented in newer applications.
+So, the first step was getting a backup from the PostgreSQL database, running these commands:</p>
+
+<pre><code>sudo mkdir -p /mnt/postgresql
+sudo chown -R postgres:postgres /mnt/postgresql
+sudo -u postgres pg_dumpall &gt; /mnt/postgresql/backup
+</code></pre>
+
+<p>Once the backup was saved, we upgraded intrepid packages.
+Of course the original Intrepid package repositories are down already, but we could take use of the <code>old-release</code> repositories.
+To select them, we used the following commands:</p>
+
+<pre><code>sudo cat &gt;/etc/apt/sources.list &lt;&lt;EOL
+deb http://old-releases.ubuntu.com/ubuntu/ intrepid main restricted universe multiverse
+deb http://old-releases.ubuntu.com/ubuntu/ intrepid-updates main restricted universe multiverse
+deb http://old-releases.ubuntu.com/ubuntu/ intrepid-security main restricted universe multiverse
+deb http://old-releases.ubuntu.com/ubuntu/ intrepid-backports main restricted universe multiverse
+deb http://old-releases.ubuntu.com/ubuntu/ intrepid-proposed main restricted universe multiverse
+EOL
+sudo apt-get update
+sudo apt-get upgrade
+</code></pre>
+
+<p>With these commands, we got an updated Intrepid release, so our following step was upgrade to Jaunty, by issuing the following commands:</p>
+
+<pre><code>sudo perl -p -i.intrepid -e 's/intrepid/jaunty/' /etc/apt/sources.list
+sudo apt-get update
+sudo apt-get install update-manager-core
+sudo apt-get upgrade
+sudo reboot
+</code></pre>
+
+<p>After the reboot, we got a Jaunty, so next step is upgrading to Karmic, and Lucid:</p>
+
+<pre><code>sudo perl -p -i.jaunty -e 's/jaunty/karmic/' /etc/apt/sources.list
+sudo apt-get update
+sudo apt-get upgrade
+sudo do-release-upgrade -f DistUpgradeViewNonInteractive
+sudo reboot
+</code></pre>
+
+<p>Karmic was the first release on which we could use <code>do-release-upgrade</code>.
+In that case, we used the <code>-f DistUpgradeViewNonInteractive</code> option to have the release upgrade done without user intervention.
+After that reboot, the OpenSSH server upgrade updated the host fingerprints, so we needed to change our <code>.ssh/known_hosts</code> removing the old one, before reconnecting.
+Then, the final step was resetting the PostgreSQL cluster, issuing the following commands as the <code>postgres</code> user:</p>
+
+<pre><code>pg_dropcluster --stop 8.4 main
+pg_createcluster -u postgres -d /data/postgresql/8.4/main 8.4 main
+service postgresql-8.4 start
+psql -f /data/postgresql/backup postgres
+</code></pre>
+
+<p>Finally, after checking everything is in place, we just could remove the old cluster and setup:</p>
+
+<pre><code>sudo rm -rf /data/postgresql/8.3 /etc/postgresql/8.3
+</code></pre>
+
+<h2>Upgrading from Maverick</h2>
+
+<p>In that case we could upgrade to Precise, since Trusty just broke the boot process.
+The first step was pretty similar, since Maverick package repositories are also outdated:</p>
+
+<pre><code>sudo bash -c "cat &gt;/etc/apt/sources.list &lt;&lt;EOF
+deb http://old-releases.ubuntu.com/ubuntu/ maverick main restricted universe multiverse
+deb http://old-releases.ubuntu.com/ubuntu/ maverick-updates main restricted universe multiverse
+deb http://old-releases.ubuntu.com/ubuntu/ maverick-security main restricted universe multiverse
+deb http://old-releases.ubuntu.com/ubuntu/ maverick-backports main restricted universe multiverse
+deb http://old-releases.ubuntu.com/ubuntu/ maverick-proposed main restricted universe multiverse
+EOF
+"
+sudo apt-get update
+sudo apt-get upgrade
+sudo do-release-upgrade -f DistUpgradeViewNonInteractive
+sudo reboot
+</code></pre>
+
+<p>After the reboot, we got a Natty release running, so updating to Oneiric was the next step. Pretty much the same:</p>
+
+<pre><code>sudo do-release-upgrade -f DistUpgradeViewNonInteractive
+sudo reboot
+</code></pre>
+
+<p>In our case, the application running here was a little bit sensible to automatic removal of packages for Precise upgrade.
+So in the following step, we couldn&rsquo;t use the unattended mode of <code>do-release-upgrade</code>:</p>
+
+<pre><code>sudo do-release-upgrade
+</code></pre>
+
+<p>When manually running the <code>do-release-upgrade</code>, we just ommitted the old package removal part.
+After the reboot, issued from the <code>do-release-upgrade</code>, we got a working Precise release running.</p>
+
+<h2>Details</h2>
+
+<p>In first place, we&rsquo;d like to point the great importance of having backups and images for the instances.
+With the backups, preferably dumps, you&rsquo;ll be able to recover the data for your databases.
+Of course, if the application running on the affected instances are not in the same server, then you&rsquo;ll need to face the client libraries updating and possible version differences that might appear.
+Here&rsquo;s where having the server images might help.
+We took static images for having the servers upgrade procedures ready.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">
+  <a target="_blank" href="https://www.github.com/ifosch">ifosch</a>
+</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2015-02-16T10:02:50-05:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>16</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>10:02 am</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/infra/'>infra</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://devex.github.io/blog/2015/02/16/ubuntu-eol-upgrades/" data-via="d3v3x" data-counturl="http://devex.github.io/blog/2015/02/16/ubuntu-eol-upgrades/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2015/02/06/performance-issues-with-rails-and-virtualbox/" title="Previous Post: Performance issues with Rails and VirtualBox">&laquo; Performance issues with Rails and VirtualBox</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p class="centered">
+  Copyright &copy; 2015 - Devex -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'devexio';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://devex.github.io/blog/2015/02/16/ubuntu-eol-upgrades/';
+        var disqus_url = 'http://devex.github.io/blog/2015/02/16/ubuntu-eol-upgrades/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
