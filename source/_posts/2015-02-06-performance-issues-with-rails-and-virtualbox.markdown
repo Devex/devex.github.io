@@ -4,7 +4,7 @@ title: "Performance issues with Rails and VirtualBox"
 date: 2015-02-06 12:02:50 +0100
 author: ifosch
 comments: true
-categories: 
+categories:
 - Infra
 
 ---
@@ -18,13 +18,14 @@ After confirming that no recent change caused this slow-down, and running some d
 
 Most of us at Devex, we use a specific setup of our apps into a [VirtualBox](https://www.virtualbox.org) machine so we can hold a local development version of our site and check how the new features integrate before to give the work as done.
 In some cases, for feature availability, performance, and workstation power reasons, these apps, and their components run completely on this environment, but in other cases, we don't run all the components in the virtual machine and we do use some components from the staging (we call it develop) environment, which is quite approximate to what we need.
-So this development environment's architecture and infrastructure is quite different from the ones we have in staging, preproduction, and, of course, production.
+So this development environment's architecture and infrastructure is quite different from the ones we have in staging, pre-production, and, of course, production.
 
 Not only that, in all our other environments, we run the apps using [Unicorn](http://unicorn.bogomips.org/) as a daemon, with more or less workers, while in this development environment, we run [WEBrick](http://www.ruby-doc.org/stdlib-1.9.3/libdoc/webrick/rdoc/WEBrick.html) within a screen session, just to simplify the load.
 
 ## The problem arises
 
-The problem arised when we noticed Rails was underperforming when running in the local development setup. Some measurements were taken showing up that the problem seemed to be located in our front end application, since the backend was running properly:
+The problem arose when we noticed Rails was underperforming when running in the local development setup.
+Some measurements were taken showing up that the problem seemed to be located in our front-end application, since the back-end was running properly:
 
     $ time wget -pq --no-cache --delete-after http://localhost:3002/apps/front_end/api/system/health
     real    0m0.523s
@@ -36,7 +37,7 @@ The problem arised when we noticed Rails was underperforming when running in the
     user    0m0.000s
     sys 0m0.000s
 
-In that case, these two URIs correspond to the same content, but for our front end and for our back end applications, respectively, and this content is mostly text, JSON formatted.
+These two URIs produce more or less identical content, JSON-formatted status info regarding our front-end and back-end applications, respectively.
 So, another measurement was done, which consisted into measuring the time to serve one complete page:
 
     $ time wget -pq --no-cache --delete-after http://localhost:3002/people
@@ -62,8 +63,8 @@ We could confirm that the logs were written much more slowly when serving static
 When we `strace`'d the WEBrick process, we couldn't see anything meaningful, but then we learned WEBrick is threaded, so the actual requests where being attended by threads, which traces were not showed in the `strace` output.
 
 The trick to [identify the thread TIDs](http://superuser.com/questions/80556/how-do-you-view-all-threads-running-on-linux) is to run the `ps` command with the `-T` option, which lists also the threads as processes, with the corresponding id.
-Then, you can [run `strace` on those TIDs](http://stackoverflow.com/questions/7698209/tracing-pthreads-in-linux).
-So, finally started finding errors on unavailable resources.
+Then you can [run `strace` on those TIDs](http://stackoverflow.com/questions/7698209/tracing-pthreads-in-linux).
+Finally we started to see errors on unavailable resources.
 We searched again and [found out](http://mitchellh.com/comparing-filesystem-performance-in-virtual-machines) that VirtualBox uses a specific filesystem for the shared folders, with some performance problems, and that NFS is one of the fastest ones you can use.
 
 ## The fix
@@ -86,7 +87,7 @@ Some others of us, decided to go for NFS, which has a couple of drawbacks:
         [...]
       end
 
-By the way, the final measurements where:
+By the way, the final measurements are as follows:
 
     $  time wget -pq --no-cache --delete-after http://localhost:3004/public/system/health
 
