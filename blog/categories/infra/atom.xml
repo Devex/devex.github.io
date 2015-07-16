@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Infra | Devex Tech Blog]]></title>
   <link href="http://devex.github.io/blog/categories/infra/atom.xml" rel="self"/>
   <link href="http://devex.github.io/"/>
-  <updated>2015-02-17T12:28:34-05:00</updated>
+  <updated>2015-07-16T07:14:17-04:00</updated>
   <id>http://devex.github.io/</id>
   <author>
     <name><![CDATA[Devex]]></name>
@@ -156,13 +156,14 @@ After confirming that no recent change caused this slow-down, and running some d
 
 <p>Most of us at Devex, we use a specific setup of our apps into a <a href="https://www.virtualbox.org">VirtualBox</a> machine so we can hold a local development version of our site and check how the new features integrate before to give the work as done.
 In some cases, for feature availability, performance, and workstation power reasons, these apps, and their components run completely on this environment, but in other cases, we don&rsquo;t run all the components in the virtual machine and we do use some components from the staging (we call it develop) environment, which is quite approximate to what we need.
-So this development environment&rsquo;s architecture and infrastructure is quite different from the ones we have in staging, preproduction, and, of course, production.</p>
+So this development environment&rsquo;s architecture and infrastructure is quite different from the ones we have in staging, pre-production, and, of course, production.</p>
 
 <p>Not only that, in all our other environments, we run the apps using <a href="http://unicorn.bogomips.org/">Unicorn</a> as a daemon, with more or less workers, while in this development environment, we run <a href="http://www.ruby-doc.org/stdlib-1.9.3/libdoc/webrick/rdoc/WEBrick.html">WEBrick</a> within a screen session, just to simplify the load.</p>
 
 <h2>The problem arises</h2>
 
-<p>The problem arised when we noticed Rails was underperforming when running in the local development setup. Some measurements were taken showing up that the problem seemed to be located in our front end application, since the backend was running properly:</p>
+<p>The problem arose when we noticed Rails was underperforming when running in the local development setup.
+Some measurements were taken showing up that the problem seemed to be located in our front-end application, since the back-end was running properly:</p>
 
 <pre><code>$ time wget -pq --no-cache --delete-after http://localhost:3002/apps/front_end/api/system/health
 real    0m0.523s
@@ -175,7 +176,7 @@ user    0m0.000s
 sys 0m0.000s
 </code></pre>
 
-<p>In that case, these two URIs correspond to the same content, but for our front end and for our back end applications, respectively, and this content is mostly text, JSON formatted.
+<p>These two URIs produce more or less identical content, JSON-formatted status info regarding our front-end and back-end applications, respectively.
 So, another measurement was done, which consisted into measuring the time to serve one complete page:</p>
 
 <pre><code>$ time wget -pq --no-cache --delete-after http://localhost:3002/people
@@ -202,8 +203,8 @@ We could confirm that the logs were written much more slowly when serving static
 <p>When we <code>strace</code>&rsquo;d the WEBrick process, we couldn&rsquo;t see anything meaningful, but then we learned WEBrick is threaded, so the actual requests where being attended by threads, which traces were not showed in the <code>strace</code> output.</p>
 
 <p>The trick to <a href="http://superuser.com/questions/80556/how-do-you-view-all-threads-running-on-linux">identify the thread TIDs</a> is to run the <code>ps</code> command with the <code>-T</code> option, which lists also the threads as processes, with the corresponding id.
-Then, you can <a href="http://stackoverflow.com/questions/7698209/tracing-pthreads-in-linux">run <code>strace</code> on those TIDs</a>.
-So, finally started finding errors on unavailable resources.
+Then you can <a href="http://stackoverflow.com/questions/7698209/tracing-pthreads-in-linux">run <code>strace</code> on those TIDs</a>.
+Finally we started to see errors on unavailable resources.
 We searched again and <a href="http://mitchellh.com/comparing-filesystem-performance-in-virtual-machines">found out</a> that VirtualBox uses a specific filesystem for the shared folders, with some performance problems, and that NFS is one of the fastest ones you can use.</p>
 
 <h2>The fix</h2>
@@ -230,7 +231,7 @@ end
 </ul>
 
 
-<p>By the way, the final measurements where:</p>
+<p>By the way, the final measurements are as follows:</p>
 
 <pre><code>$  time wget -pq --no-cache --delete-after http://localhost:3004/public/system/health
 
