@@ -9,7 +9,6 @@ Devex.do(:good).well()
 Interesting topics which we can cover at some point when someone has the time
 and motivation:
 
-- Google Apps as our News CMT
 - Nested Layouts in front-end
 - Configuration defaults in front-end and grape-api
 
@@ -46,6 +45,4 @@ Feel free to propose new categories if you see the need!
 ## Octopress Documentation
 
 Check out [Octopress.org](http://octopress.org/docs) for guides and documentation.
-It should all apply to our current stable version (found in the `master`
-branch). If this is not the case, [please submit a
-fix to our docs repo](https://github.com/octopress/docs).
+It should all apply to our current stable version (found in the `master` branch).
